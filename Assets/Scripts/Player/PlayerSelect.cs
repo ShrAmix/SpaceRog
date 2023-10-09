@@ -1,0 +1,32 @@
+using UnityEngine;
+
+public class PlayerSelect : MonoBehaviour
+{
+    public GameObject[] playerPrefabs; // Зберігаємо префаби гравців тут (Player1, Player2, Player3, Player4)
+
+    public Joystick JoystickPlayer;
+    public Joystick JoystickGun;
+
+    private void Start()
+    {
+        int index = PlayerPrefs.GetInt("SelectPlayer");
+
+        if (index < 0 || index >= playerPrefabs.Length)
+        {
+            // Якщо індекс виходить за межі масиву, встановимо його на 0, щоб за замовчуванням вибрати перший гравець
+            index = 0;
+        }
+
+        GameObject selectedPlayerPrefab = playerPrefabs[index];
+
+        // Створюємо об'єкт вибраного гравця на сцені
+        GameObject playerInstance = Instantiate(selectedPlayerPrefab, transform.position, Quaternion.identity);
+
+        // Отримуємо компонент PlayerFly зі створеного гравця
+        PlayerFly playerFlyScript = playerInstance.GetComponent<PlayerFly>();
+
+        // Підключаємо джойстики до гравця
+        playerFlyScript.JoistickPlayer = JoystickPlayer;
+        playerFlyScript.JoistickGun = JoystickGun;
+    }
+}
