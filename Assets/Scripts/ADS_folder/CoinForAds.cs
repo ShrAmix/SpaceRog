@@ -13,9 +13,10 @@ public class CoinForAds : MonoBehaviour
     {
         instance = this;
         System.DateTime currentTime = System.DateTime.UtcNow;
-        if (currentTime.Day != PlayerPrefs.GetInt("DayNow"))
+        if (currentTime.Day != PlayerPrefs.GetInt("AdCoinDay"))
         {
             PlayerPrefs.SetInt("CoinAds",50);
+            PlayerPrefs.SetInt("AdCoinDay", currentTime.Day);
         }
         adsButton.text = ""+PlayerPrefs.GetInt("CoinAds");
     }

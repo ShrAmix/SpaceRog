@@ -37,6 +37,10 @@ public class EnemySpaceship : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     private void Start()
     {
+        if (PlayerPrefs.GetInt("Difficult") == 0)
+            timer = 2.25f;
+        else if(PlayerPrefs.GetInt("Difficult") == 2)
+            timer = 1.25f;
         // Отримуємо посилання на об'єкт класу Spawner
         spawner = FindObjectOfType<Spawner>();
 

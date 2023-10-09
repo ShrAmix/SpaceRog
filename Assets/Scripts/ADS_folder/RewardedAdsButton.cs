@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 
 public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
@@ -81,7 +82,10 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         }
         if (adUnityId.Equals(_adUnityId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED) && SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(5))
         {
-            GameManager.instance.MamyMoney();
+            //GameManager.instance.MamyMoney();
+            PlayerPrefs.SetInt("DayNow" + $"{0}", -1);
+            PlayerPrefs.SetInt("DayNow" + $"{1}", -1);
+            PlayerPrefs.SetInt("DayNow" + $"{2}", -1);
             GameManager.instance.LoadScene(5);
         }
         LoadAd();

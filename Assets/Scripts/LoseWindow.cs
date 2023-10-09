@@ -18,13 +18,14 @@ public class LoseWindow : MonoBehaviour
     {
         int Score = ScoreManager.Instance.Score;
         ScoreText.text = Score.ToString();
-        int BestScore = PlayerPrefs.GetInt("BestScore");
+        int hard = PlayerPrefs.GetInt("Difficult", 1);
+        int BestScore = PlayerPrefs.GetInt("BestScore" + $"{hard}");
         if (Score > BestScore)
         {
             BestScore = Score;
         }
         BestScoreText.text = BestScore.ToString();
-        PlayerPrefs.SetInt("BestScore", BestScore);
+        PlayerPrefs.SetInt("BestScore" + $"{hard}", BestScore);
         PlayerPrefs.SetInt("ScoreDay", BestScore);
     }
     public void MoneyGo()

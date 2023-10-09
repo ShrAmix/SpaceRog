@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.XR;
+
 public class MenuScore : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI ScoreTextS;
@@ -14,8 +16,10 @@ public class MenuScore : MonoBehaviour
     private void Start()
     {
         Instance = this;
-        SetScore(PlayerPrefs.GetInt("BestScore"), PlayerPrefs.GetInt("Money"));
+        int hard = PlayerPrefs.GetInt("Difficult", 1);
+        SetScore(PlayerPrefs.GetInt("BestScore" + $"{hard}"), PlayerPrefs.GetInt("Money"));
     }
+ 
     public void SetScore(int ScoreS,int Money)
     {
         this.ScoreS += ScoreS;

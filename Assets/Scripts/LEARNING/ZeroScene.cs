@@ -105,7 +105,7 @@ public class ZeroScene : MonoBehaviour
             case 0:
                  sms= "HI, I'M NASTYA. I'VE BEEN ASSIGNED TO EXPLAIN THINGS TO YOU. FOR THE SAKE OF ARGUMENT, I'M GOING TO START FROM SCRATCH, SO LISTEN UP. WE, THE SPACE ROG COMPANY, WERE CREATED TO DESTROY ALIENS";
                 if ((PlayerPrefs.GetString("SelectedLocale") == "uk"))
-                    sms = "опхб╡р, ъ мюяръ. леме мюгмювхкх онъямхрх рна╡ ын дн внцн. дкъ опнрюйнкс ъ лнч онъямхрх бяе г мскъ, рнлс яксуюи. лх, йнлоюм╡ъ SPACE ROG, аскх ярбнпемм╡ дкъ рнцн ына гмхыхрх опхаскэж╡б";
+                    sms = "опхб╡р, ъ мюяръ. леме мюгмювхкх онъямхрх рна╡ ын дн внцн. дкъ опнрюйнкс ъ люч онъямхрх бяе г мскъ, рнлс яксуюи. лх, йнлоюм╡ъ SPACE ROG, аскх ярбнпемм╡ дкъ рнцн ына гмхыхрх опхаскэж╡б";
                 HintSystem.Instance.ShowHint(sms);
                 nastia[0].SetActive(true);
                 break;

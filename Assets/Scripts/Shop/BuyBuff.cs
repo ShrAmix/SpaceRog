@@ -37,11 +37,11 @@ public class BuyBuff : MonoBehaviour
         {
             if (coins >= price[access] && PlayerPrefs.GetInt("ship" + $"{access + 1}Access") == 1)
             {
+                PlayerPrefs.SetInt("Money", coins - price[access]);
+                MenuScore.Instance.SetScore(0, -price[access]);
                 access++;
                 PlayerPrefs.SetInt(objectName + "BuffBuy", access);//sniperBuffBuy brushBuffBuy powerBuffBuy
-                PlayerPrefs.SetInt("Money", coins - price[access]);
-
-                MenuScore.Instance.SetScore(0, -price[access]);
+                
                 objectPrice.text = access == 3 ? "MAX" : price[access].ToString();
 
                 buttonImage.sprite = imageBuff[access];

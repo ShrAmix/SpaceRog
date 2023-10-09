@@ -19,6 +19,14 @@ public class Spawner : MonoBehaviour
     private float hardT, spawnT, TimerHard;
     private void Awake()
     {
+        if (!superHard)
+        {
+            if (PlayerPrefs.GetInt("Difficult") == 0)
+                WhyTimeMinus = 0.015f;
+            else if (PlayerPrefs.GetInt("Difficult") == 2)
+                WhyTimeMinus = 0.018f;
+        }
+
         hardT = HardTime;
         spawnT = Timer;
         TimerHard = TimeToSpawn;

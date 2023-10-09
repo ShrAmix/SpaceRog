@@ -1,11 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using UnityEngine.XR;
 
-public class GraphicsSetting : MonoBehaviour
+public class TakeDifficult : MonoBehaviour
 {
+    public GameObject menuScore;
     public static GraphicsSetting Instance { get; private set; }
     public TMP_Dropdown graphicsDropdown;
 
@@ -16,7 +17,7 @@ public class GraphicsSetting : MonoBehaviour
     }
     public void LanguagrSetting()
     {
-        int graphicsValue = PlayerPrefs.GetInt("Graphics", 0); // За замовчуванням 0
+        int graphicsValue = PlayerPrefs.GetInt("Difficult", 1); // За замовчуванням 0
         if (PlayerPrefs.GetString("SelectedLocale") == "uk")
         {
             List<TMP_Dropdown.OptionData> options = graphicsDropdown.options;
@@ -31,7 +32,7 @@ public class GraphicsSetting : MonoBehaviour
 
     public void SetQuality(int qualityIndex)
     {
-        QualitySettings.SetQualityLevel(qualityIndex);
-        PlayerPrefs.SetInt("Graphics", qualityIndex);
+        PlayerPrefs.SetInt("Difficult", qualityIndex);
+        menuScore.GetComponent<TextMeshProUGUI>().text= ""+ PlayerPrefs.GetInt("BestScore" + $"{PlayerPrefs.GetInt("Difficult", 1)}");
     }
 }
