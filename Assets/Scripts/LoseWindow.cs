@@ -26,7 +26,7 @@ public class LoseWindow : MonoBehaviour
         }
         BestScoreText.text = BestScore.ToString();
         PlayerPrefs.SetInt("BestScore" + $"{hard}", BestScore);
-        PlayerPrefs.SetInt("ScoreDay", BestScore);
+        PlayerPrefs.SetInt("ScoreDay" + $"{PlayerPrefs.GetInt("Difficult")}", BestScore);
     }
     public void MoneyGo()
     {

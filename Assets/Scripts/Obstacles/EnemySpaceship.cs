@@ -175,8 +175,8 @@ public class EnemySpaceship : MonoBehaviour
 
                 // «б≥льшуЇмо к≥льк≥сть грошей у ScoreManager
                 ScoreManager.Instance.SetMoney(1);
-                PlayerPrefs.SetInt("MoneyDay", PlayerPrefs.GetInt("MoneyDay") + 1);
-                PlayerPrefs.SetInt("MaxMoney", PlayerPrefs.GetInt("MaxMoney") + 1);
+                PlayerPrefs.SetInt("MoneyDay" + $"{PlayerPrefs.GetInt("Difficult")}", PlayerPrefs.GetInt("MoneyDay" + $"{PlayerPrefs.GetInt("Difficult")}") + 1);
+                PlayerPrefs.SetInt("MaxMoney" + $"{PlayerPrefs.GetInt("Difficult")}", PlayerPrefs.GetInt("MaxMoney" + $"{PlayerPrefs.GetInt("Difficult")}") + 1);
             }
 
             // ¬идаленн€ монет окремо
@@ -210,10 +210,10 @@ public class EnemySpaceship : MonoBehaviour
 
                 Destroy(gameObject);  // «нищуЇмо поточний екземпл€р ворожого корабл€
                 ScoreManager.Instance.SetScore(scoreForDead);
-                int t = Random.Range(0, maxMoneyForDead);
+                int t = Random.Range(0, (maxMoneyForDead+PlayerPrefs.GetInt("Difficult")));
                 SpawnCoins(t);
-                PlayerPrefs.SetInt("Enemys", PlayerPrefs.GetInt("Enemys") + 1);
-                PlayerPrefs.SetInt("EnemysDay", PlayerPrefs.GetInt("EnemysDay") + 1);
+                PlayerPrefs.SetInt("Enemys" + $"{PlayerPrefs.GetInt("Difficult")}", PlayerPrefs.GetInt("Enemys" + $"{PlayerPrefs.GetInt("Difficult")}") + 1);
+                PlayerPrefs.SetInt("EnemysDay" + $"{PlayerPrefs.GetInt("Difficult")}", PlayerPrefs.GetInt("EnemysDay" + $"{PlayerPrefs.GetInt("Difficult")}") + 1);
             }
         }
 

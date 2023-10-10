@@ -31,6 +31,30 @@ public class EnemyNewcomers : MonoBehaviour
     [SerializeField] private AudioSource gunshotAudioSource;
     private void Start()
     {
+        float[] IndexD = new float[3];
+        if (PlayerPrefs.GetInt("Difficult") == 0)
+        {
+            IndexD[0] = -1;
+            IndexD[1] = -1.5f;
+            IndexD[2] = -1.5f;
+        }
+        else if (PlayerPrefs.GetInt("Difficult") == 2)
+        {
+            IndexD[0] = 1;
+            IndexD[1] = 1.5f;
+            IndexD[2] = 1.5f;
+        }
+        else
+        {
+            IndexD[0] = 0;
+            IndexD[1] = 0;
+            IndexD[2] = 0;
+        }
+
+        speedRotate += IndexD[0];
+        speedHorizontal += IndexD[1];
+        speedVertical += IndexD[2];
+
         // ќтримуЇмо посиланн€ на об'Їкт класу Spawner
         spawner = FindObjectOfType<Spawner>();
         rb = GetComponent<Rigidbody2D>();                     // ќтримуЇмо посиланн€ на Rigidbody2D
@@ -143,8 +167,8 @@ public class EnemyNewcomers : MonoBehaviour
 
                 // «б≥льшуЇмо к≥льк≥сть грошей у ScoreManager
                 ScoreManager.Instance.SetMoney(1);
-                PlayerPrefs.SetInt("MoneyDay", PlayerPrefs.GetInt("MoneyDay") + 1);
-                PlayerPrefs.SetInt("MaxMoney", PlayerPrefs.GetInt("MaxMoney") + 1);
+                PlayerPrefs.SetInt("MoneyDay" + $"{PlayerPrefs.GetInt("Difficult")}", PlayerPrefs.GetInt("MoneyDay" + $"{PlayerPrefs.GetInt("Difficult")}") + 1);
+                PlayerPrefs.SetInt("MaxMoney" + $"{PlayerPrefs.GetInt("Difficult")}", PlayerPrefs.GetInt("MaxMoney" + $"{PlayerPrefs.GetInt("Difficult")}") + 1);
             }
 
             // ¬идаленн€ монет окремо
@@ -176,11 +200,11 @@ public class EnemyNewcomers : MonoBehaviour
 
                 Destroy(gameObject);  // «нищуЇмо поточний екземпл€р ворожого корабл€
                 ScoreManager.Instance.SetScore(scoreForDead);
-                int t = Random.Range(0, maxMoneyForDead);
+                int t = Random.Range(0, (maxMoneyForDead + PlayerPrefs.GetInt("Difficult")));
 
                 SpawnCoins(t);
-                PlayerPrefs.SetInt("Enemys", PlayerPrefs.GetInt("Enemys") + 1);
-                PlayerPrefs.SetInt("EnemysDay", PlayerPrefs.GetInt("EnemysDay") + 1);
+                PlayerPrefs.SetInt("Enemys" + $"{PlayerPrefs.GetInt("Difficult")}", PlayerPrefs.GetInt("Enemys" + $"{PlayerPrefs.GetInt("Difficult")}") + 1);
+                PlayerPrefs.SetInt("EnemysDay" + $"{PlayerPrefs.GetInt("Difficult")}", PlayerPrefs.GetInt("EnemysDay" + $"{PlayerPrefs.GetInt("Difficult")}") + 1);
 
             }
         }

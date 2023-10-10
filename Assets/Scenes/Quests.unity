@@ -603,7 +603,7 @@ MonoBehaviour:
     \u041A\u041E\u0420\u0410\u0411\u0415\u041B\u042C \u0414\u041E \u041C\u0410\u041A\u0421\u0418\u041C\u0423\u041C\u0423"
   - "\u041F\u0420\u041E\u041A\u0410\u0427\u0422\u0418 4-\u0422\u0418\u0419 \u041A\u041E\u0421\u041C\u0406\u0427\u041D\u0418\u0419
     \u041A\u041E\u0420\u0410\u0411\u0415\u041B\u042C \u0414\u041E \u041C\u0410\u041A\u0421\u0418\u041C\u0423\u041C\u0423"
-  Award: 640000002c010000e8030000b80b0000
+  Award: 640000002c010000f4010000b80b0000
   textMeshPro: {fileID: 718805015}
   textAward: {fileID: 1596919281}
   textHowMoney: {fileID: 2022666357}
@@ -2459,7 +2459,7 @@ MonoBehaviour:
     \u041A\u041E\u0420\u0410\u0411\u0415\u041B\u042C"
   - "\u041F\u0420\u0418\u0414\u0411\u0410\u0419 4-\u0422\u0418\u0419 \u041A\u041E\u0421\u041C\u0406\u0427\u041D\u0418\u0419
     \u041A\u041E\u0420\u0410\u0411\u0415\u041B\u042C"
-  Award: 1900000096000000f4010000dc050000
+  Award: 19000000960000002c010000dc050000
   textMeshPro: {fileID: 179583283}
   textAward: {fileID: 1132212107}
   textHowMoney: {fileID: 1966808597}
@@ -9655,8 +9655,10 @@ MonoBehaviour:
   Award: 150
   textMeshPro: {fileID: 8589338975589651379}
   textAward: {fileID: 1706770041247033469}
+  textHowMoney: {fileID: 7262850209372962542}
   button: {fileID: 1181674092857737283}
   Hard: 2
+  hardd: 0
 --- !u!224 &4707394248939307595
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11443,7 +11445,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -341.06265}
+  m_AnchoredPosition: {x: 0, y: -341.50595}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6650348936549658789
@@ -12100,8 +12102,10 @@ MonoBehaviour:
   Award: 100
   textMeshPro: {fileID: 1750356343191469729}
   textAward: {fileID: 4737783012084813619}
+  textHowMoney: {fileID: 1159138420261510568}
   button: {fileID: 4386108505304687082}
   Hard: 1
+  hardd: 0
 --- !u!4 &7726251583847170361
 Transform:
   m_ObjectHideFlags: 0
@@ -12883,8 +12887,10 @@ MonoBehaviour:
   Award: 50
   textMeshPro: {fileID: 808074860008494821}
   textAward: {fileID: 4880308814854132361}
+  textHowMoney: {fileID: 4147828793786901004}
   button: {fileID: 8964533136053823629}
   Hard: 0
+  hardd: 0
 --- !u!1 &9212703364614668895
 GameObject:
   m_ObjectHideFlags: 0

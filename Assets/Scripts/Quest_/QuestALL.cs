@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class QuestALL : MonoBehaviour
 {
@@ -18,9 +19,26 @@ public class QuestALL : MonoBehaviour
     [SerializeField] private int questWhy;
 
     private int whatDo;
-
+    private int hardd;
     private void Start()
     {
+        int hardd = PlayerPrefs.GetInt("Difficult");
+        if (hardd == 0)
+        {
+            for(int i=0;i<Award.Length;i++)
+            Award[i] /= 2;
+        }
+        else if (hardd == 2)
+        {
+            for (int i = 0; i < Award.Length; i++)
+            {
+                float u = Award[i] * 1.5f;
+                Award[i] = (int)u;
+            }
+        }
+
+
+        hardd = PlayerPrefs.GetInt("Difficult", 1);
         if (PlayerPrefs.GetInt("QuestAll" + $"{questWhy}") >= questTexts.Length - 1)
             gameObject.SetActive(false);
         else
@@ -56,7 +74,7 @@ public class QuestALL : MonoBehaviour
             QuestsSettings();
         }
 
-        MenuScore.Instance.ScoreTXT(PlayerPrefs.GetInt("BestScore"), PlayerPrefs.GetInt("Money"));
+        MenuScore.Instance.ScoreTXT(PlayerPrefs.GetInt("BestScore" + $"{PlayerPrefs.GetInt("Difficult")}"), PlayerPrefs.GetInt("Money"));
 
 
         PlayerPrefs.SetInt("AllQuest" + $"{questWhy}", 1);
@@ -72,26 +90,28 @@ public class QuestALL : MonoBehaviour
                 break;
             case 1://DESTROY 50 ENEMIES
                 {
-                    whatDo = PlayerPrefs.GetInt("Enemys");
+                    
+                    whatDo = PlayerPrefs.GetInt("Enemys" + $"{PlayerPrefs.GetInt("Difficult", 1)}");
                     QuestComplite();
                     break;
                 }
 
             case 2://SCORE 100 POINTS IN SURVIVAL
                 {
-                    whatDo = PlayerPrefs.GetInt("BestScore");
+                    
+                    whatDo = PlayerPrefs.GetInt("BestScore" + $"{PlayerPrefs.GetInt("Difficult", 1)}");
                     QuestComplite();
                     break;
                 }
             case 3://COLLECT 50 COINS
                 {
-                    whatDo = PlayerPrefs.GetInt("MaxMoney");
+                    whatDo = PlayerPrefs.GetInt("MaxMoney" + $"{PlayerPrefs.GetInt("Difficult", 1)}");
                     QuestComplite();
                     break;
                 }
             case 4://GET TO THE 5TH WAVE
                 {
-                    whatDo = PlayerPrefs.GetInt("maxWave");
+                    whatDo = PlayerPrefs.GetInt("maxWave" + $"{PlayerPrefs.GetInt("Difficult", 1)}");
                     QuestComplite();
                     break;
 

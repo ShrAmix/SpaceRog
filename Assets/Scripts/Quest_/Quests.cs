@@ -15,30 +15,42 @@ public class Quests : MonoBehaviour
     public int Award;
     public TextMeshProUGUI textMeshPro; // Посилання на компонент TextMeshPro
     public TextMeshProUGUI textAward; // Посилання на компонент TextMeshPro
+    [SerializeField] private TextMeshProUGUI textHowMoney;
     public GameObject button;
-    public int Hard;
+    public int Hard, hardd;
 
     private int questWhy;
 
     private int whatDo;
 
+
     private void Start()
     {
-
-
+        int hardd = PlayerPrefs.GetInt("Difficult");
+        if(hardd == 0)
+        {
+            Award /= 2;
+        }
+        else if(hardd == 2) 
+        {
+            float u = Award * 1.5f;
+            Award = (int)u;
+        }
         System.DateTime currentTime = System.DateTime.UtcNow;
         questWhy = PlayerPrefs.GetInt("DayQuest" + $"{Hard}");
-
+        textHowMoney.text = "+" + Award;
         //Debug.Log(PlayerPrefs.GetInt("DayNow" + $"{Hard}") + "  " + currentTime.Day);
 
 
         if (currentTime.Day != PlayerPrefs.GetInt("DayNow" + $"{Hard}"))
         {
-            PlayerPrefs.SetInt("EnemysDay", 0);
-            PlayerPrefs.SetInt("MoneyDay", 0);
-            PlayerPrefs.SetInt("ScoreDay", 0);
-            PlayerPrefs.SetInt("DayWave", 0);
-
+            for (int i = 0; i < 3; i++)
+            {
+                PlayerPrefs.SetInt("EnemysDay" + $"{i}", 0);
+                PlayerPrefs.SetInt("MoneyDay" + $"{i}", 0);
+                PlayerPrefs.SetInt("ScoreDay" + $"{i}", 0);
+                PlayerPrefs.SetInt("DayWave" + $"{i}", 0);
+            }
 
             PlayerPrefs.SetInt("DayNow" + $"{Hard}", currentTime.Day);
             PlayerPrefs.SetInt("DayQuest" + $"{Hard}", Random.Range(1, questTexts.Length));
@@ -81,7 +93,8 @@ public class Quests : MonoBehaviour
                 break;
             case 1://Destroy X enemies
                 {
-                    whatDo = PlayerPrefs.GetInt("EnemysDay");
+                    whatDo = PlayerPrefs.GetInt("EnemysDay"  + $"{PlayerPrefs.GetInt("Difficult", 1)}");
+                    Debug.Log(whatDo+ "          Destroy X enemies");
                     int number = ExtractNumberFromTask(questTexts[questWhy]);
 
                     LocalText(whatDo, number);
@@ -94,7 +107,7 @@ public class Quests : MonoBehaviour
 
             case 2://Score 100 points in survival
                 {
-                    whatDo = PlayerPrefs.GetInt("ScoreDay");
+                    whatDo = PlayerPrefs.GetInt("ScoreDay" + $"{PlayerPrefs.GetInt("Difficult", 1)}");
                     int number = ExtractNumberFromTask(questTexts[questWhy]);
                     LocalText(whatDo, number);
                     if (whatDo >= number)
@@ -106,7 +119,7 @@ public class Quests : MonoBehaviour
             case 3://Collect X coins
                 {
 
-                    whatDo = PlayerPrefs.GetInt("MoneyDay");
+                    whatDo = PlayerPrefs.GetInt("MoneyDay" + $"{PlayerPrefs.GetInt("Difficult", 1)}");
                     int number = ExtractNumberFromTask(questTexts[questWhy]);
                     LocalText(whatDo, number);
                     if (whatDo >= number)
@@ -117,7 +130,7 @@ public class Quests : MonoBehaviour
                 }
             case 4://Get to the Xth wave.
                 {
-                    whatDo = PlayerPrefs.GetInt("DayWave");
+                    whatDo = PlayerPrefs.GetInt("DayWave" + $"{PlayerPrefs.GetInt("Difficult", 1)}");
                     int number = ExtractNumberFromTask(questTexts[questWhy]);
                     LocalText(whatDo, number);
                     if (whatDo >= number)

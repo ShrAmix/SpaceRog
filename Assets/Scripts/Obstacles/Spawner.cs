@@ -41,8 +41,11 @@ public class Spawner : MonoBehaviour
         if (hardT < 0 && Hard < PipePrefabs.Length && !superHard)
         {
             Hard = Hard + 3;
-            if ((Hard / 3) + 1 > PlayerPrefs.GetInt("maxWave"))
-                PlayerPrefs.SetInt("maxWave", (Hard / 3) + 1);
+            if ((Hard / 3) + 1 > PlayerPrefs.GetInt("maxWave" + $"{PlayerPrefs.GetInt("Difficult")}"))
+            {
+                PlayerPrefs.SetInt("maxWave" + $"{PlayerPrefs.GetInt("Difficult")}", (Hard / 3) + 1);
+                PlayerPrefs.SetInt("DayWave" + $"{PlayerPrefs.GetInt("Difficult")}", (Hard / 3) + 1);
+            }
             hardT = HardTime;
             TimerHard = TimeToSpawn;
 
@@ -55,8 +58,11 @@ public class Spawner : MonoBehaviour
         if (Hard == PipePrefabs.Length)
         {
             superHard = true;
-            if (Hard / 3 > PlayerPrefs.GetInt("maxWave"))
-                PlayerPrefs.SetInt("maxWave", 5);
+            if (Hard / 3 > PlayerPrefs.GetInt("maxWave" + $"{PlayerPrefs.GetInt("Difficult")}"))
+            {
+                PlayerPrefs.SetInt("maxWave" + $"{PlayerPrefs.GetInt("Difficult")}", 5);
+                PlayerPrefs.SetInt("DayWave" + $"{PlayerPrefs.GetInt("Difficult")}", 5);
+            }
             string sms = "WAVE 5";
             if ((PlayerPrefs.GetString("SelectedLocale") == "uk"))
                 sms = "’¬»Àﬂ 5";

@@ -201,6 +201,23 @@ public class PlayerFly : MonoBehaviour
             }
         }
 
+        if (PlayerPrefs.GetInt("Difficult") == 0 && sniperSteel <= 0)
+        {
+            PlayerPrefs.SetInt("SettingAutoRotate", 1);
+            // Знайдемо ближайшого противника
+            Transform nearestEnemy = FindNearestEnemy();
+
+            // Націлюємо дула гравця на знайденого противника, якщо такий є
+            if (nearestEnemy != null)
+            {
+                Vector2 lookDirection = nearestEnemy.position - PlayerR.position;
+                float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+                Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+                PlayerR.rotation = Quaternion.Slerp(PlayerR.rotation, targetRotation, rotationSpeed * 0.25f * Time.deltaTime);
+            }
+        }
+
         Timer -= Time.deltaTime;
         liveSteel -= Time.deltaTime;
         brushSteel -= Time.deltaTime;
