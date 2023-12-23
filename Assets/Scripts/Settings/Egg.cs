@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class Egg : MonoBehaviour
@@ -40,8 +41,11 @@ public class Egg : MonoBehaviour
             HintSystem.Instance.ShowHint(sms);
              lastUpdateTime = -100000;
         }
-        
-        
+        if (egg1 == 20 && egg2 == 11 && lastUpdateTime >= updateInterval)
+        {
+            SceneManager.LoadScene(8);
+        }
+
 
 
         lastUpdateTime += Time.deltaTime;

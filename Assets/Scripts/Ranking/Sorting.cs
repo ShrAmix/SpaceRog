@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Sorting : MonoBehaviour
 {
     public GameObject[] playerInfo;
-
+    public TMP_InputField searchInput;
     private void Start()
     {
         //SortPlayerInfo();
@@ -17,7 +17,47 @@ public class Sorting : MonoBehaviour
     {
         SortPlayerInfo(what);
     }
+    public void OnSearchInputEndEdit()
+    {
+        string searchQuery=searchInput.text;
+        SearchAndDisplayResults(searchQuery);
+    }
 
+    private void SearchAndDisplayResults(string searchQuery)
+    {
+        // Якщо введено пустий рядок, вмикаємо всі об'єкти і виходимо
+        if (string.IsNullOrEmpty(searchQuery))
+        {
+            EnableAllObjects();
+            return;
+        }
+
+        foreach (GameObject playerObject in playerInfo)
+        {
+            // Отримуємо компоненти TextMeshProUGUI з дочірніх об'єктів Score0, Score1, Score, Name, Money
+            List<TextMeshProUGUI> textComponents = new List<TextMeshProUGUI>();
+            textComponents.Add(playerObject.transform.Find("Score0")?.GetComponent<TextMeshProUGUI>());
+            textComponents.Add(playerObject.transform.Find("Score1")?.GetComponent<TextMeshProUGUI>());
+            textComponents.Add(playerObject.transform.Find("Score")?.GetComponent<TextMeshProUGUI>());
+            textComponents.Add(playerObject.transform.Find("Name")?.GetComponent<TextMeshProUGUI>());
+            textComponents.Add(playerObject.transform.Find("Money")?.GetComponent<TextMeshProUGUI>());
+
+            // Перевіряємо, чи в playerObject є хоча б один TextMeshProUGUI, який містить searchQuery
+            bool containsSearchQuery = textComponents.Exists(component => component != null && component.text.Contains(searchQuery));
+
+            // Вмикаємо або вимикаємо об'єкт відповідно до результату пошуку
+            playerObject.SetActive(containsSearchQuery);
+        }
+    }
+
+    // Метод для вмикання всіх об'єктів
+    private void EnableAllObjects()
+    {
+        foreach (GameObject playerObject in playerInfo)
+        {
+            playerObject.SetActive(true);
+        }
+    }
     private void SortPlayerInfo(string name)
     {
         // Створюємо масив Tuple, де кожен елемент - пара playerInfo і TextMeshProUGUI
