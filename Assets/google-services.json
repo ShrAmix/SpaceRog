@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "96434994206",
+    "firebase_url": "https://space-rog-18074-default-rtdb.firebaseio.com",
+    "project_id": "space-rog-18074",
+    "storage_bucket": "space-rog-18074.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96434994206:android:548b4f1473b3963e6c420f",
+        "android_client_info": {
+          "package_name": "com.IfoxpEntertainment.SpaceRog"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0wnBQe0-pgaF5s3cvcoueU0n86vws6xk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
