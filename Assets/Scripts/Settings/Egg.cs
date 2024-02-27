@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class Egg : MonoBehaviour
@@ -41,7 +42,7 @@ public class Egg : MonoBehaviour
              lastUpdateTime = -100000;
         }
         
-        
+
 
 
         lastUpdateTime += Time.deltaTime;
