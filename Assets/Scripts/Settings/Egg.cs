@@ -41,10 +41,7 @@ public class Egg : MonoBehaviour
             HintSystem.Instance.ShowHint(sms);
              lastUpdateTime = -100000;
         }
-        if (egg1 == 20 && egg2 == 11 && lastUpdateTime >= updateInterval)
-        {
-            SceneManager.LoadScene(8);
-        }
+        
 
 
 
