@@ -760,6 +760,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 296489422}
+  - component: {fileID: 296489424}
   - component: {fileID: 296489423}
   m_Layer: 0
   m_Name: Spawner Buff
@@ -814,6 +815,27 @@ MonoBehaviour:
   Timer: 10
   HardTime: 0
   WhyTimeMinus: 0
+--- !u!114 &296489424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296489421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 4219092397
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &344086238
 GameObject:
   m_ObjectHideFlags: 0
@@ -6915,7 +6937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2038219741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8906,7 +8928,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -2, y: -13}
+  m_AnchoredPosition: {x: -2, y: -13.000122}
   m_SizeDelta: {x: 766.39, y: 645}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &8170153792145925419
@@ -9233,7 +9255,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -769, y: -11}
+  m_AnchoredPosition: {x: -769, y: -11.000122}
   m_SizeDelta: {x: 766.39014, y: 645}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &8170153793370096990

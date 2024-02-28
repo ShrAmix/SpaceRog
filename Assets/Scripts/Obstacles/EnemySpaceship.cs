@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class EnemySpaceship : MonoBehaviour
+public class EnemySpaceship : NetworkBehaviour
 {
     [SerializeField] private int health = 1;  // Кількість життя
     [SerializeField] private GameObject explosionPrefab;  // Префаб вибуху

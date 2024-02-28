@@ -95,10 +95,11 @@ GameObject:
   - component: {fileID: 6020792664247655209}
   - component: {fileID: 6020792664247655210}
   - component: {fileID: 6020792664247655204}
+  - component: {fileID: 5605702770979246402}
   - component: {fileID: 1577724768766557601}
   - component: {fileID: 6020792664247655211}
   - component: {fileID: 4384722973908119732}
-  - component: {fileID: 5605702770979246402}
+  - component: {fileID: -2512963646719318359}
   m_Layer: 0
   m_Name: Enemy B 2
   m_TagString: Enemy
@@ -190,6 +191,27 @@ CapsuleCollider2D:
   m_Offset: {x: -0.8, y: -0.8}
   m_Size: {x: 77.88, y: 67.8}
   m_Direction: 1
+--- !u!114 &5605702770979246402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6020792664247655208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1571567016
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &1577724768766557601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +274,7 @@ MonoBehaviour:
   x2: 6.666667
   baseScale: 0.015
   PlusMinus: -1
---- !u!114 &5605702770979246402
+--- !u!114 &-2512963646719318359
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -261,15 +283,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 6020792664247655208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1571567016
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
+  UseUnreliableDeltas: 0
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 0
+  SyncRotAngleX: 0
+  SyncRotAngleY: 0
+  SyncRotAngleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  Interpolate: 1
+  SlerpPosition: 0

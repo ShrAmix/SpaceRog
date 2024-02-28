@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class EnemyNewcomers : MonoBehaviour
+public class EnemyNewcomers : NetworkBehaviour
 {
     [SerializeField] private int health = 2;  // Кількість життя
     [SerializeField] private GameObject explosionPrefab;  // Префаб вибуху

@@ -1211,7 +1211,7 @@ GameObject:
   - component: {fileID: 166350996}
   - component: {fileID: 166350995}
   m_Layer: 0
-  m_Name: Multipalyer Manager
+  m_Name: NetworkManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1275,7 +1275,7 @@ MonoBehaviour:
     RecycleNetworkIds: 1
     NetworkIdRecycleDelay: 120
     RpcHashSize: 0
-    LoadSceneTimeOut: 120
+    LoadSceneTimeOut: 150
     SpawnTimeout: 10
     EnableNetworkLogs: 1
     OldPrefabList: []

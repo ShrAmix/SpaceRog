@@ -1,4 +1,8 @@
+using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 
 public class PlayerSelect : MonoBehaviour
 {
@@ -17,6 +21,7 @@ public class PlayerSelect : MonoBehaviour
             index = 0;
         }
 
+
         GameObject selectedPlayerPrefab = playerPrefabs[index];
 
         // —творюЇмо об'Їкт вибраного гравц€ на сцен≥
@@ -28,5 +33,8 @@ public class PlayerSelect : MonoBehaviour
         // ѕ≥дключаЇмо джойстики до гравц€
         playerFlyScript.JoistickPlayer = JoystickPlayer;
         playerFlyScript.JoistickGun = JoystickGun;
+
+       
+
     }
 }

@@ -21,7 +21,7 @@ public class SpawnerMenu : MonoBehaviour
         int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
         // Перевірка, чи індекс активної сцени не дорівнює 1
-        if (activeSceneIndex != 1)
+        if (activeSceneIndex != 1 && activeSceneIndex != 8)
         {
             Instantiate(PipePrefabs[Random.Range(0, PipePrefabs.Length)], backgroundData);
         }

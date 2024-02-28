@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class EnemyDestroyers : MonoBehaviour
+public class EnemyDestroyers : NetworkBehaviour
 {
     [SerializeField] private int health = 3;  // Кількість життя
     [SerializeField] private GameObject explosionPrefab;  // Префаб вибуху

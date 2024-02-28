@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
+using Unity.Netcode;
 
 
-public class Spawner : MonoBehaviour
+public class Spawner : NetworkBehaviour
 {
     [SerializeField] private float TimeToSpawn;
     [SerializeField] private int Rannd, Hard = 0;
@@ -19,74 +20,84 @@ public class Spawner : MonoBehaviour
     private float hardT, spawnT, TimerHard;
     private void Awake()
     {
-        if (!superHard)
-        {
-            if (PlayerPrefs.GetInt("Difficult") == 0)
-                WhyTimeMinus = 0.015f;
-            else if (PlayerPrefs.GetInt("Difficult") == 2)
-                WhyTimeMinus = 0.018f;
-        }
+        
+            if (!superHard)
+            {
+                if (PlayerPrefs.GetInt("Difficult") == 0)
+                    WhyTimeMinus = 0.015f;
+                else if (PlayerPrefs.GetInt("Difficult") == 2)
+                    WhyTimeMinus = 0.018f;
+            }
 
-        hardT = HardTime;
-        spawnT = Timer;
-        TimerHard = TimeToSpawn;
+            hardT = HardTime;
+            spawnT = Timer;
+            TimerHard = TimeToSpawn;
 
-        // backgroundData = FindObjectOfType<BackgroundData>().transform;
-
+            // backgroundData = FindObjectOfType<BackgroundData>().transform;
+        
     }
 
 
     private void FixedUpdate()
     {
-        if (hardT < 0 && Hard < PipePrefabs.Length && !superHard)
+        if (IsHost)
         {
-            Hard = Hard + 3;
-            if ((Hard / 3) + 1 > PlayerPrefs.GetInt("maxWave" + $"{PlayerPrefs.GetInt("Difficult")}"))
+            if (hardT < 0 && Hard < PipePrefabs.Length && !superHard)
             {
-                PlayerPrefs.SetInt("maxWave" + $"{PlayerPrefs.GetInt("Difficult")}", (Hard / 3) + 1);
-                PlayerPrefs.SetInt("DayWave" + $"{PlayerPrefs.GetInt("Difficult")}", (Hard / 3) + 1);
+                Hard = Hard + 3;
+                if ((Hard / 3) + 1 > PlayerPrefs.GetInt("maxWave" + $"{PlayerPrefs.GetInt("Difficult")}"))
+                {
+                    PlayerPrefs.SetInt("maxWave" + $"{PlayerPrefs.GetInt("Difficult")}", (Hard / 3) + 1);
+                    PlayerPrefs.SetInt("DayWave" + $"{PlayerPrefs.GetInt("Difficult")}", (Hard / 3) + 1);
+                }
+                hardT = HardTime;
+                TimerHard = TimeToSpawn;
+
+                string sms = "WAVE " + ((Hard / 3) + 1);
+
+                if ((PlayerPrefs.GetString("SelectedLocale") == "uk"))
+                    sms = "’¬»Àﬂ " + ((Hard / 3) + 1);
+                HintSystem.Instance.ShowHint(sms);
             }
-            hardT = HardTime;
-            TimerHard = TimeToSpawn;
-
-            string sms = "WAVE " + ((Hard / 3) + 1);
-
-            if ((PlayerPrefs.GetString("SelectedLocale") == "uk"))
-                sms = "’¬»Àﬂ " + ((Hard / 3) + 1);
-            HintSystem.Instance.ShowHint(sms);
-        }
-        if (Hard == PipePrefabs.Length)
-        {
-            superHard = true;
-            if (Hard / 3 > PlayerPrefs.GetInt("maxWave" + $"{PlayerPrefs.GetInt("Difficult")}"))
+            if (Hard == PipePrefabs.Length)
             {
-                PlayerPrefs.SetInt("maxWave" + $"{PlayerPrefs.GetInt("Difficult")}", 5);
-                PlayerPrefs.SetInt("DayWave" + $"{PlayerPrefs.GetInt("Difficult")}", 5);
+                superHard = true;
+                if (Hard / 3 > PlayerPrefs.GetInt("maxWave" + $"{PlayerPrefs.GetInt("Difficult")}"))
+                {
+                    PlayerPrefs.SetInt("maxWave" + $"{PlayerPrefs.GetInt("Difficult")}", 5);
+                    PlayerPrefs.SetInt("DayWave" + $"{PlayerPrefs.GetInt("Difficult")}", 5);
+                }
+                string sms = "WAVE 5";
+                if ((PlayerPrefs.GetString("SelectedLocale") == "uk"))
+                    sms = "’¬»Àﬂ 5";
+                HintSystem.Instance.ShowHint(sms);
+                Hard = 0;
+                TimeToSpawn /= 2;
+                TimerHard = TimeToSpawn;
+                Rannd = PipePrefabs.Length;
             }
-            string sms = "WAVE 5";
-            if ((PlayerPrefs.GetString("SelectedLocale") == "uk"))
-                sms = "’¬»Àﬂ 5";
-            HintSystem.Instance.ShowHint(sms);
-            Hard = 0;
-            TimeToSpawn /= 2;
-            TimerHard = TimeToSpawn;
-            Rannd = PipePrefabs.Length;
-        }
-        if (spawnT <= 0)
-        {
-            spawnT = TimerHard;
-            if (!superHard)
+            if (spawnT <= 0)
             {
-                TimerHard -= WhyTimeMinus;
-                Debug.Log(TimerHard);
-            }
+                spawnT = TimerHard;
+                if (!superHard)
+                {
+                    TimerHard -= WhyTimeMinus;
+                    Debug.Log(TimerHard);
+                }
 
-            Instantiate(PipePrefabs[Random.Range(Hard, Rannd + Hard)], WhereSpawn);
+                var prefabToInstantiate = PipePrefabs[Random.Range(Hard, Rannd + Hard)];
+                var instance = Instantiate(prefabToInstantiate, WhereSpawn);
+                var instanceNetworkObject = instance.GetComponent<NetworkObject>();
+                instanceNetworkObject.Spawn();
+
+
+
+            }
+            else
+            {
+                spawnT -= Time.deltaTime;
+            }
+            hardT -= Time.deltaTime;
         }
-        else
-        {
-            spawnT -= Time.deltaTime;
-        }
-        hardT -= Time.deltaTime;
     }
 }

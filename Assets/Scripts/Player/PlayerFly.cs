@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerFly : MonoBehaviour
+public class PlayerFly : NetworkBehaviour
 {
     public static PlayerFly playerInstance;
     private float Timer = 2;
