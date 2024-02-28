@@ -30,8 +30,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Magazine.unity
     guid: 52a87f72d9e7ca640ab2a6cd8e25c2c0
   - enabled: 1
-    path: Assets/Scenes/Ranking.unity
-    guid: db176aee0e1b24c468b30d075520e475
+    path: Assets/Scenes/Multiplayer.unity
+    guid: ecf6f25b70316e949bdb305cd6980fff
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: d03f7cf013e8e3e4aaeb565df5e3b2bc, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: c65ba9f4c0f99b248b74e6e5f48029bd, type: 2}
