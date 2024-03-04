@@ -74,7 +74,7 @@ public class PlayerTransform : NetworkBehaviour {
     private struct PlayerNetworkState : INetworkSerializable
     {
         private float _posX, _posY;
-        private float _rotZ;
+        private short _rotZ;
 
         internal Vector3 Position
         {
@@ -89,7 +89,7 @@ public class PlayerTransform : NetworkBehaviour {
         internal Vector3 Rotation
         {
             get => new Vector3(0, 0, _rotZ);
-            set => _rotZ = value.z;
+            set => _rotZ = (short)value.z;
         }
 
         public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
