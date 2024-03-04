@@ -266,7 +266,6 @@ GameObject:
   - component: {fileID: 6094398395256989332}
   - component: {fileID: 6094398395256989356}
   - component: {fileID: -1307851386874876719}
-  - component: {fileID: 1718048651822172375}
   - component: {fileID: 6094398395256989357}
   - component: {fileID: -4668065992802943540}
   - component: {fileID: 6094398395256989335}
@@ -412,21 +411,6 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &1718048651822172375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6094398395256989330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57bcc03429c26344e82ae4d2d054ddbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _projectile: {fileID: 5506367298925231081, guid: 49e4daf130edc9f4285038bd9e39b686, type: 3}
-  Gun1: {fileID: 1483039278364325636}
-  Gun2: {fileID: 1483039278572029514}
 --- !u!114 &6094398395256989357
 MonoBehaviour:
   m_ObjectHideFlags: 0

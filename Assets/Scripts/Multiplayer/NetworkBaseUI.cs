@@ -17,6 +17,7 @@ public class NetworkBaseUI : MonoBehaviour
     {
         // Заповнити IP-адресу за замовчуванням локальним IPv4
         ipInput.text = GetLocalIPv4();
+        portInput.text = "7777";
     }
 
     public void StartGame()

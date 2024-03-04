@@ -25,7 +25,7 @@ public class PlayerSelect : MonoBehaviour
         {
             NetworkManager networkManager = FindObjectOfType<NetworkManager>();
 
-            if (networkManager != null && networkManager.NetworkConfig.PlayerPrefab==null)
+            if (networkManager != null )
             {
                 // Ваш метод для зміни параметра в NetworkManager
                 networkManager.NetworkConfig.PlayerPrefab = playerPrefabs[index];
