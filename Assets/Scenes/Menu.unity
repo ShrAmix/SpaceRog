@@ -1208,6 +1208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 166350997}
+  - component: {fileID: 166350998}
   - component: {fileID: 166350996}
   - component: {fileID: 166350995}
   m_Layer: 0
@@ -1262,9 +1263,12 @@ MonoBehaviour:
     PlayerPrefab: {fileID: 0}
     Prefabs:
       NetworkPrefabsLists:
-      - {fileID: 11400000, guid: 31a842f967379c04398cca9defccc38a, type: 2}
-    TickRate: 64
-    ClientConnectionBufferTimeout: 10
+      - {fileID: 11400000, guid: 7187892ebac66af4f9f4a9fd25e7a148, type: 2}
+      - {fileID: 11400000, guid: c850c9269d2e21e4b848a959c61bf16b, type: 2}
+      - {fileID: 11400000, guid: cfa612f94ba44bd48909616fef0792a9, type: 2}
+      - {fileID: 11400000, guid: 84b6a145aeb709e498b197b6775c2087, type: 2}
+    TickRate: 30
+    ClientConnectionBufferTimeout: 2
     ConnectionApproval: 0
     ConnectionData: 
     EnableTimeResync: 0
@@ -1275,12 +1279,12 @@ MonoBehaviour:
     RecycleNetworkIds: 1
     NetworkIdRecycleDelay: 120
     RpcHashSize: 0
-    LoadSceneTimeOut: 150
+    LoadSceneTimeOut: 120
     SpawnTimeout: 10
     EnableNetworkLogs: 1
     OldPrefabList: []
   RunInBackground: 1
-  LogLevel: 0
+  LogLevel: 1
 --- !u!4 &166350997
 Transform:
   m_ObjectHideFlags: 0
@@ -1296,6 +1300,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &166350998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166350994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93bae3f87bc6ba141bb5622c0c8dae0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &167620099
 GameObject:
   m_ObjectHideFlags: 0

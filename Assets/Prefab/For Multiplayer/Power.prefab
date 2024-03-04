@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: -8592425468232702059}
   - component: {fileID: 1816879253084216656}
   - component: {fileID: 3606058944848751945}
-  - component: {fileID: 6742555520625073131}
   m_Layer: 0
   m_Name: Power
   m_TagString: BuffPower
@@ -81,7 +80,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4796f23bb31c05047829704e1b26e849, type: 3}
   - {fileID: 21300000, guid: 96c182b6841f29744b1875cf1f114cd5, type: 3}
   - {fileID: 21300000, guid: 04bec3e1be154f44185c6a893d51c830, type: 3}
+  angle: 0
+  moveDirection: 0
+  mover: 0
   timeBrush: 10
+  MoveClient: 1
 --- !u!212 &621594757872515985
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -197,34 +200,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6742555520625073131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2059573295584454272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UseUnreliableDeltas: 0
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 0
-  SyncRotAngleX: 0
-  SyncRotAngleY: 0
-  SyncRotAngleZ: 0
-  SyncScaleX: 0
-  SyncScaleY: 0
-  SyncScaleZ: 0
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  UseQuaternionSynchronization: 0
-  UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
-  InLocalSpace: 0
-  Interpolate: 1
-  SlerpPosition: 0

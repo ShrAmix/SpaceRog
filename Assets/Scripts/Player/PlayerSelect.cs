@@ -21,20 +21,24 @@ public class PlayerSelect : MonoBehaviour
             index = 0;
         }
 
+        if (SceneManager.GetActiveScene().buildIndex == 8)
+        {
+            NetworkManager networkManager = FindObjectOfType<NetworkManager>();
 
-        GameObject selectedPlayerPrefab = playerPrefabs[index];
+            if (networkManager != null && networkManager.NetworkConfig.PlayerPrefab==null)
+            {
+                // Ваш метод для зміни параметра в NetworkManager
+                networkManager.NetworkConfig.PlayerPrefab = playerPrefabs[index];
+            }
+            
+        }
+        else
+        {
+            GameObject selectedPlayerPrefab = playerPrefabs[index];
 
-        // Створюємо об'єкт вибраного гравця на сцені
-        GameObject playerInstance = Instantiate(selectedPlayerPrefab, transform.position, Quaternion.identity);
-
-        // Отримуємо компонент PlayerFly зі створеного гравця
-        PlayerFly playerFlyScript = playerInstance.GetComponent<PlayerFly>();
-
-        // Підключаємо джойстики до гравця
-        playerFlyScript.JoistickPlayer = JoystickPlayer;
-        playerFlyScript.JoistickGun = JoystickGun;
-
-       
+            // Створюємо об'єкт вибраного гравця на сцені
+            GameObject playerInstance = Instantiate(selectedPlayerPrefab, transform.position, Quaternion.identity);
+        }
 
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
@@ -71,8 +72,16 @@ public class GameManager : MonoBehaviour
     public void RestartScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        var netman = FindAnyObjectByType<NetworkManager>();
+        if (netman.IsClient || netman.IsHost)
+        {
+            NetworkManager.Singleton.Shutdown();
+        }
+
+
         // loseWindow.gameObject.SetActive(true);
         loseWindow.PlaeyrLose();
+
         Time.timeScale = 1;
     }
     public void Continue()
@@ -86,6 +95,11 @@ public class GameManager : MonoBehaviour
         if (SceneNumber == 1)
         {
             loseWindow.PlaeyrLose();
+        }
+        var netman = FindAnyObjectByType<NetworkManager>();
+        if (netman.IsClient || netman.IsHost)
+        {
+            NetworkManager.Singleton.Shutdown();
         }
         if (SceneNumber == 2) { }
         SceneManager.LoadScene(SceneNumber);

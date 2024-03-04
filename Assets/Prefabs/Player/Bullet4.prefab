@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: -5148869574638681101}
   - component: {fileID: -6935765957727253754}
   - component: {fileID: 3363822453165225516}
+  - component: {fileID: 1707979104357202160}
   m_Layer: 0
   m_Name: Bullet4
   m_TagString: Bullet
@@ -240,3 +241,25 @@ MonoBehaviour:
   x1: 11.66031
   x2: 6.666667
   baseScale: 0.52
+  PlusMinus: 1
+--- !u!114 &1707979104357202160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6931205015334012322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 0
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1

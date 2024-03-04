@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class BulletGo : MonoBehaviour
+public class BulletGo : NetworkBehaviour
 {
     [SerializeField] private float Speed = 30;
     [SerializeField] private GameObject ColliderB;
@@ -63,4 +64,5 @@ public class BulletGo : MonoBehaviour
             Destroy(ColliderB.gameObject);
         }
     }
+
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerFly : NetworkBehaviour
+public class PlayerFly : MonoBehaviour
 {
     public static PlayerFly playerInstance;
     private float Timer = 2;
@@ -65,9 +65,24 @@ public class PlayerFly : NetworkBehaviour
     [SerializeField] private AudioClip gunshotSound;
 
     [SerializeField] private AudioClip deathSound;
-
+    public bool MoveClient=true;
+   //public PlayerShooting pShoot;
     private void Start()
     {
+        Joystick[] joysticks = FindObjectsOfType<Joystick>();
+        foreach (Joystick joystick in joysticks)
+        {
+            if (joystick.gameObject.name == "Floating Joystick")
+            {
+                JoistickPlayer = joystick;
+            }
+            else if (joystick.gameObject.name == "Floating Joystick Gun")
+            {
+                JoistickGun = joystick;
+            }
+        }
+
+
         playerInstance = this;
         if (!chekCharactars)
         {
@@ -109,6 +124,8 @@ public class PlayerFly : NetworkBehaviour
 
         health = FindObjectOfType<Health>();
     }
+
+   
     private AudioSource FindAudioSource(string objectName)
     {
         AudioController[] musicManagers = FindObjectsOfType<AudioController>();
@@ -130,8 +147,26 @@ public class PlayerFly : NetworkBehaviour
     }
     private void FixedUpdate()
     {
-        if (!startGo)
+        
+        Movement();
+        SniperSreel();
+        DifficultSniper();
+
+
+
+
+        Timer -= Time.deltaTime;
+        liveSteel -= Time.deltaTime;
+        brushSteel -= Time.deltaTime;
+        powerSteel -= Time.deltaTime;
+        sniperSteel -= Time.deltaTime;
+    }
+    #region Movement
+    private void Movement()
+    {
+        if (!startGo )
         {
+            if(MoveClient)
             PlayerR.transform.position = new Vector3(transform.position.x + 0.07f, transform.position.y, transform.position.z);
             if (Timer < 0)
             {
@@ -148,31 +183,37 @@ public class PlayerFly : NetworkBehaviour
             joystickPlayerInput = ApplyZeroZone(joystickPlayerInput, zeroZoneRadiusP);
             joystickGunInput = ApplyZeroZone(joystickGunInput, zeroZoneRadiusG);
 
-            Rb.velocity = new Vector2(joystickPlayerInput.x * SpeedHorizontal, joystickPlayerInput.y * SpeedVertical);
-
-            Vector2 lookDirection = new Vector2(joystickGunInput.x, joystickGunInput.y);
-            if (lookDirection != Vector2.zero)
+            if (MoveClient)
             {
-                float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-                Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                if (sniperSteel <= 0)
-                    PlayerR.rotation = Quaternion.Slerp(PlayerR.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            }
-            else if (PlayerPrefs.GetInt("SettingAutoRotate") == 0)
-            {
-                Quaternion idleRotation = Quaternion.AngleAxis(0f, Vector3.forward);
-                if (sniperSteel <= 0)
-                    PlayerR.rotation = Quaternion.Slerp(PlayerR.rotation, idleRotation, idleRotationSpeed * Time.deltaTime);
-            }
+                 Rb.velocity = new Vector2(joystickPlayerInput.x * SpeedHorizontal, joystickPlayerInput.y * SpeedVertical);
 
+            
+                Vector2 lookDirection = new Vector2(joystickGunInput.x, joystickGunInput.y);
+                if (lookDirection != Vector2.zero)
+                {
+                    float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+                    Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                    if (sniperSteel <= 0)
+                        PlayerR.rotation = Quaternion.Slerp(PlayerR.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                }
+                else if (PlayerPrefs.GetInt("SettingAutoRotate") == 0)
+                {
+                    Quaternion idleRotation = Quaternion.AngleAxis(0f, Vector3.forward);
+                    if (sniperSteel <= 0)
+                        PlayerR.rotation = Quaternion.Slerp(PlayerR.rotation, idleRotation, idleRotationSpeed * Time.deltaTime);
+                }
+            }
             if (Timer <= 0)
             {
-                GameObject bulletGun1 = Instantiate(Bullet, Gun1.transform.position, Gun1.rotation);
-                bulletGun1.transform.position = new Vector3(Gun1.transform.position.x, Gun1.transform.position.y, 0);
-                PlayGunshotSound();
+                
+                    GameObject bulletGun1 = Instantiate(Bullet, Gun1.transform.position, Gun1.rotation);
+                    bulletGun1.transform.position = new Vector3(Gun1.transform.position.x, Gun1.transform.position.y, 0);
+                    PlayGunshotSound();
 
-                GameObject bulletGun2 = Instantiate(Bullet, Gun2.transform.position, Gun2.rotation);
-                bulletGun2.transform.position = new Vector3(Gun2.transform.position.x, Gun2.transform.position.y, 0);
+                    GameObject bulletGun2 = Instantiate(Bullet, Gun2.transform.position, Gun2.rotation);
+                    bulletGun2.transform.position = new Vector3(Gun2.transform.position.x, Gun2.transform.position.y, 0);
+                
+
 
                 if (powerSteel > 0)
                     timeShoot = 0.05f;
@@ -185,7 +226,14 @@ public class PlayerFly : NetworkBehaviour
                 Timer = timeShoot;
             }
         }
+    }
+    
+    #endregion
 
+
+    #region Sniper
+    private void SniperSreel()
+    {
         if (sniperSteel > 0)
         {
             // Знайдемо ближайшого противника
@@ -201,7 +249,10 @@ public class PlayerFly : NetworkBehaviour
                 PlayerR.rotation = Quaternion.Slerp(PlayerR.rotation, targetRotation, rotationSpeed * 2 * Time.deltaTime);
             }
         }
+    }
 
+    private void DifficultSniper()
+    {
         if (PlayerPrefs.GetInt("Difficult") == 0 && sniperSteel <= 0)
         {
             PlayerPrefs.SetInt("SettingAutoRotate", 1);
@@ -218,13 +269,10 @@ public class PlayerFly : NetworkBehaviour
                 PlayerR.rotation = Quaternion.Slerp(PlayerR.rotation, targetRotation, rotationSpeed * 0.25f * Time.deltaTime);
             }
         }
-
-        Timer -= Time.deltaTime;
-        liveSteel -= Time.deltaTime;
-        brushSteel -= Time.deltaTime;
-        powerSteel -= Time.deltaTime;
-        sniperSteel -= Time.deltaTime;
     }
+
+    #endregion
+
     private void PlayGunshotSound()
     {
         if (gunshotSound != null && gunshotAudioSource != null)

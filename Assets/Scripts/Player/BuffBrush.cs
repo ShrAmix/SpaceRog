@@ -15,10 +15,10 @@ public class BuffBrush : NetworkBehaviour
     [SerializeField] private float speedVertical = 5f;
     [SerializeField] private float maxAngle = 30f;
     [SerializeField] private Sprite[] spriteBuff;
-    private float angle, moveDirection;
+    public float angle, moveDirection,mover;
 
     [SerializeField] private double timeBrush=10;
-
+    public bool MoveClient=true;
 
 
 
@@ -49,7 +49,7 @@ public class BuffBrush : NetworkBehaviour
         BuffTimeValue = timeBrush; // Змініть назву змінної на BuffTimeValue
         if (instance != null && instance != this)
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
         else
         {
@@ -73,13 +73,18 @@ public class BuffBrush : NetworkBehaviour
             float screenHeight = Screen.height;
             float visibleWidth = Camera.main.orthographicSize * 2.0f * screenWidth / screenHeight;
             visibleWidth /= 2;
-            transform.position = new Vector3(Random.Range(-visibleWidth+1, visibleWidth-1), 5f, 0f);
+            if(MoveClient)
+                transform.position = new Vector3(Random.Range(-visibleWidth+1, visibleWidth-1), 5f, 0f);
+            else
+                transform.position = new Vector3(mover, 5f, 0f);
 
             // Визначаємо напрямок руху об'єкта в залежності від спавну
-            moveDirection = transform.position.x < 0f ? 1f : -1f;
+            if (MoveClient)
+                moveDirection = transform.position.x < 0f ? 1f : -1f;
 
             // Визначаємо кут руху об'єкта в залежності від напрямку спавну
-            angle = transform.position.x < 0f ? Random.Range(-90f, -90f + maxAngle) : Random.Range(-maxAngle + 90f, 90f);
+            if (MoveClient)
+                angle = transform.position.x < 0f ? Random.Range(-90f, -90f + maxAngle) : Random.Range(-maxAngle + 90f, 90f);
             GetComponent<BoxCollider2D>().enabled = true;
         }
     }
